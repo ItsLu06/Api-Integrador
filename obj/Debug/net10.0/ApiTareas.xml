@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ApiTareas</name>
+    </assembly>
+    <members>
+        <member name="T:ApiTareas.Controllers.CategoriasController">
+            <summary>Recurso relacionado: categorías que agrupan las tareas.</summary>
+        </member>
+        <member name="M:ApiTareas.Controllers.CategoriasController.Listar">
+            <summary>Lista las categorías con su cantidad de tareas.</summary>
+            <response code="200">Lista de categorías.</response>
+        </member>
+        <member name="M:ApiTareas.Controllers.CategoriasController.ObtenerPorId(System.Int32)">
+            <summary>Obtiene una categoría por su Id.</summary>
+            <param name="id">Id de la categoría.</param>
+            <response code="200">La categoría solicitada.</response>
+            <response code="404">No existe una categoría con ese Id.</response>
+        </member>
+        <member name="M:ApiTareas.Controllers.CategoriasController.ListarTareas(System.Int32)">
+            <summary>Lista las tareas que pertenecen a una categoría.</summary>
+            <param name="id">Id de la categoría.</param>
+            <response code="200">Tareas de la categoría (puede estar vacía).</response>
+            <response code="404">No existe una categoría con ese Id.</response>
+        </member>
+        <member name="M:ApiTareas.Controllers.CategoriasController.Crear(ApiTareas.Dtos.CategoriaSolicitud)">
+            <summary>Crea una categoría.</summary>
+            <param name="solicitud">Datos de la nueva categoría.</param>
+            <response code="201">Categoría creada. El encabezado Location apunta a GET /api/categorias/{id}.</response>
+            <response code="400">Datos inválidos.</response>
+            <response code="409">Ya existe una categoría con ese nombre.</response>
+        </member>
+        <member name="M:ApiTareas.Controllers.CategoriasController.Eliminar(System.Int32)">
+            <summary>Elimina una categoría que no tenga tareas.</summary>
+            <param name="id">Id de la categoría.</param>
+            <response code="204">Categoría eliminada (sin contenido).</response>
+            <response code="404">No existe una categoría con ese Id.</response>
+            <response code="409">La categoría tiene tareas y no puede eliminarse.</response>
+        </member>
+        <member name="M:ApiTareas.Controllers.TareasController.Listar(System.Nullable{ApiTareas.Models.EstadoTarea},System.Nullable{ApiTareas.Models.PrioridadTarea},System.Nullable{System.Int32})">
+            <param name="estado">Filtra por estado: Pendiente, EnProgreso o Completada.</param>
+            <param name="prioridad">Filtra por prioridad: Baja, Media o Alta.</param>
+            <param name="categoriaId">Filtra por el Id de la categoría.</param>
+            <response code="200">Lista de tareas (puede estar vacía).</response>
+        </member>
+        <member name="M:ApiTareas.Controllers.TareasController.ObtenerPorId(System.Int32)">
+            <summary>Obtiene una tarea por su Id.</summary>
+            <param name="id">Id de la tarea.</param>
+            <response code="200">La tarea solicitada.</response>
+            <response code="404">No existe una tarea con ese Id.</response>
+        </member>
+        <member name="M:ApiTareas.Controllers.TareasController.Crear(ApiTareas.Dtos.TareaSolicitud)">
+            <summary>Crea una tarea.</summary>
+            <param name="solicitud">Datos de la nueva tarea.</param>
+            <response code="201">Tarea creada. El encabezado Location apunta a GET /api/tareas/{id}.</response>
+            <response code="400">Datos inválidos, categoría inexistente o fecha límite anterior a hoy.</response>
+        </member>
+        <member name="M:ApiTareas.Controllers.TareasController.Actualizar(System.Int32,ApiTareas.Dtos.TareaSolicitud)">
+            <summary>Reemplaza los datos de una tarea existente.</summary>
+            <param name="id">Id de la tarea a actualizar.</param>
+            <param name="solicitud">Nuevos datos de la tarea.</param>
+            <response code="200">Tarea actualizada.</response>
+            <response code="400">Datos inválidos, categoría inexistente o fecha límite anterior a hoy.</response>
+            <response code="404">No existe una tarea con ese Id.</response>
+        </member>
+        <member name="M:ApiTareas.Controllers.TareasController.Eliminar(System.Int32)">
+            <summary>Elimina una tarea.</summary>
+            <param name="id">Id de la tarea a eliminar.</param>
+            <response code="204">Tarea eliminada (sin contenido).</response>
+            <response code="404">No existe una tarea con ese Id.</response>
+        </member>
+        <member name="T:ApiTareas.Dtos.CategoriaSolicitud">
+            <summary>Datos que envía el cliente para crear una categoría.</summary>
+        </member>
+        <member name="P:ApiTareas.Dtos.CategoriaSolicitud.Nombre">
+            <summary>Nombre único de la categoría (2 a 60 caracteres).</summary>
+        </member>
+        <member name="P:ApiTareas.Dtos.CategoriaSolicitud.Descripcion">
+            <summary>Descripción opcional (hasta 200 caracteres).</summary>
+        </member>
+        <member name="T:ApiTareas.Dtos.CategoriaRespuesta">
+            <summary>Categoría tal como la devuelve la API.</summary>
+        </member>
+        <member name="M:ApiTareas.Dtos.CategoriaRespuesta.#ctor(System.Int32,System.String,System.String,System.Int32)">
+            <summary>Categoría tal como la devuelve la API.</summary>
+        </member>
+        <member name="T:ApiTareas.Dtos.MensajeRespuesta">
+            <summary>Cuerpo de las respuestas de error 404 y 409: { "mensaje": "..." }.</summary>
+        </member>
+        <member name="M:ApiTareas.Dtos.MensajeRespuesta.#ctor(System.String)">
+            <summary>Cuerpo de las respuestas de error 404 y 409: { "mensaje": "..." }.</summary>
+        </member>
+        <member name="T:ApiTareas.Dtos.TareaSolicitud">
+            <summary>Datos que envía el cliente para crear (POST) o reemplazar (PUT) una tarea.</summary>
+        </member>
+        <member name="P:ApiTareas.Dtos.TareaSolicitud.Titulo">
+            <summary>Título de la tarea (3 a 120 caracteres).</summary>
+        </member>
+        <member name="P:ApiTareas.Dtos.TareaSolicitud.Descripcion">
+            <summary>Detalle opcional (hasta 500 caracteres).</summary>
+        </member>
+        <member name="P:ApiTareas.Dtos.TareaSolicitud.Prioridad">
+            <summary>Baja, Media o Alta.</summary>
+        </member>
+        <member name="P:ApiTareas.Dtos.TareaSolicitud.Estado">
+            <summary>Pendiente, EnProgreso o Completada.</summary>
+        </member>
+        <member name="P:ApiTareas.Dtos.TareaSolicitud.FechaLimite">
+            <summary>Fecha límite opcional (formato AAAA-MM-DD). No puede ser anterior a hoy, salvo en tareas completadas.</summary>
+        </member>
+        <member name="P:ApiTareas.Dtos.TareaSolicitud.CategoriaId">
+            <summary>Id de la categoría a la que pertenece. Debe existir.</summary>
+        </member>
+        <member name="T:ApiTareas.Dtos.TareaRespuesta">
+            <summary>Tarea tal como la devuelve la API.</summary>
+        </member>
+        <member name="M:ApiTareas.Dtos.TareaRespuesta.#ctor(System.Int32,System.String,System.String,ApiTareas.Models.PrioridadTarea,ApiTareas.Models.EstadoTarea,System.Nullable{System.DateOnly},System.DateTime,System.Nullable{System.DateTime},System.Int32,System.String)">
+            <summary>Tarea tal como la devuelve la API.</summary>
+        </member>
+        <member name="P:ApiTareas.Dtos.TareaRespuesta.Proyeccion">
+            <summary>Proyección reutilizable que EF Core traduce a SQL (solo lee las columnas necesarias).</summary>
+        </member>
+        <member name="M:ApiTareas.Dtos.TareaRespuesta.Desde(ApiTareas.Models.Tarea,System.String)">
+            <summary>Convierte una tarea ya cargada en memoria (usado después de crear o actualizar).</summary>
+        </member>
+        <member name="T:ApiTareas.Migrations.InicialTareas">
+            <inheritdoc />
+        </member>
+        <member name="M:ApiTareas.Migrations.InicialTareas.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApiTareas.Migrations.InicialTareas.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApiTareas.Migrations.InicialTareas.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ApiTareas.Models.EstadoTarea">
+            <summary>Estado en el que se encuentra una tarea.</summary>
+        </member>
+        <member name="T:ApiTareas.Models.PrioridadTarea">
+            <summary>Nivel de prioridad de una tarea.</summary>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Auto-generated public partial Program class for top-level statement apps.
+            </summary>
+        </member>
+    </members>
+</doc>

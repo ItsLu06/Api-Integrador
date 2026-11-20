@@ -1,0 +1,146 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\draka\\OneDrive\\Desktop\\Univalle\\Cuarto_Semestre\\Programacion_Web_III\\Unidad_3\\ApiTareas_Integrador\\ApiTareas\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D77B8993-6885-0E95-BFFA-898DAB81EA21}|ApiTareas.csproj|c:\\users\\draka\\onedrive\\desktop\\univalle\\cuarto_semestre\\programacion_web_iii\\unidad_3\\apitareas_integrador\\apitareas\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D77B8993-6885-0E95-BFFA-898DAB81EA21}|ApiTareas.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D77B8993-6885-0E95-BFFA-898DAB81EA21}|ApiTareas.csproj|c:\\users\\draka\\onedrive\\desktop\\univalle\\cuarto_semestre\\programacion_web_iii\\unidad_3\\apitareas_integrador\\apitareas\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{D77B8993-6885-0E95-BFFA-898DAB81EA21}|ApiTareas.csproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D77B8993-6885-0E95-BFFA-898DAB81EA21}|ApiTareas.csproj|c:\\users\\draka\\onedrive\\desktop\\univalle\\cuarto_semestre\\programacion_web_iii\\unidad_3\\apitareas_integrador\\apitareas\\controllers\\categoriascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D77B8993-6885-0E95-BFFA-898DAB81EA21}|ApiTareas.csproj|solutionrelative:controllers\\categoriascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D77B8993-6885-0E95-BFFA-898DAB81EA21}|ApiTareas.csproj|c:\\users\\draka\\onedrive\\desktop\\univalle\\cuarto_semestre\\programacion_web_iii\\unidad_3\\apitareas_integrador\\apitareas\\controllers\\tareascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D77B8993-6885-0E95-BFFA-898DAB81EA21}|ApiTareas.csproj|solutionrelative:controllers\\tareascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D77B8993-6885-0E95-BFFA-898DAB81EA21}|ApiTareas.csproj|c:\\users\\draka\\onedrive\\desktop\\univalle\\cuarto_semestre\\programacion_web_iii\\unidad_3\\apitareas_integrador\\apitareas\\migrations\\tareasdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D77B8993-6885-0E95-BFFA-898DAB81EA21}|ApiTareas.csproj|solutionrelative:migrations\\tareasdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D77B8993-6885-0E95-BFFA-898DAB81EA21}|ApiTareas.csproj|c:\\users\\draka\\onedrive\\desktop\\univalle\\cuarto_semestre\\programacion_web_iii\\unidad_3\\apitareas_integrador\\apitareas\\migrations\\20261118224801_inicialtareas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D77B8993-6885-0E95-BFFA-898DAB81EA21}|ApiTareas.csproj|solutionrelative:migrations\\20261118224801_inicialtareas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\draka\\OneDrive\\Desktop\\Univalle\\Cuarto_Semestre\\Programacion_Web_III\\Unidad_3\\ApiTareas_Integrador\\ApiTareas\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\draka\\OneDrive\\Desktop\\Univalle\\Cuarto_Semestre\\Programacion_Web_III\\Unidad_3\\ApiTareas_Integrador\\ApiTareas\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-11-20T15:48:34.966Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CategoriasController.cs",
+              "DocumentMoniker": "C:\\Users\\draka\\OneDrive\\Desktop\\Univalle\\Cuarto_Semestre\\Programacion_Web_III\\Unidad_3\\ApiTareas_Integrador\\ApiTareas\\Controllers\\CategoriasController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CategoriasController.cs",
+              "ToolTip": "C:\\Users\\draka\\OneDrive\\Desktop\\Univalle\\Cuarto_Semestre\\Programacion_Web_III\\Unidad_3\\ApiTareas_Integrador\\ApiTareas\\Controllers\\CategoriasController.cs",
+              "RelativeToolTip": "Controllers\\CategoriasController.cs",
+              "ViewState": "AgIAAJIAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-20T15:32:46.461Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TareasController.cs",
+              "DocumentMoniker": "C:\\Users\\draka\\OneDrive\\Desktop\\Univalle\\Cuarto_Semestre\\Programacion_Web_III\\Unidad_3\\ApiTareas_Integrador\\ApiTareas\\Controllers\\TareasController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TareasController.cs",
+              "ToolTip": "C:\\Users\\draka\\OneDrive\\Desktop\\Univalle\\Cuarto_Semestre\\Programacion_Web_III\\Unidad_3\\ApiTareas_Integrador\\ApiTareas\\Controllers\\TareasController.cs",
+              "RelativeToolTip": "Controllers\\TareasController.cs",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAmwBQAAABbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-20T15:31:43.95Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "README.md",
+              "DocumentMoniker": "C:\\Users\\draka\\OneDrive\\Desktop\\Univalle\\Cuarto_Semestre\\Programacion_Web_III\\Unidad_3\\ApiTareas_Integrador\\ApiTareas\\README.md",
+              "RelativeDocumentMoniker": "README.md",
+              "ToolTip": "C:\\Users\\draka\\OneDrive\\Desktop\\Univalle\\Cuarto_Semestre\\Programacion_Web_III\\Unidad_3\\ApiTareas_Integrador\\ApiTareas\\README.md",
+              "RelativeToolTip": "README.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-11-20T15:27:53.275Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TareasDbContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\Users\\draka\\OneDrive\\Desktop\\Univalle\\Cuarto_Semestre\\Programacion_Web_III\\Unidad_3\\ApiTareas_Integrador\\ApiTareas\\Migrations\\TareasDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "Migrations\\TareasDbContextModelSnapshot.cs",
+              "ToolTip": "C:\\Users\\draka\\OneDrive\\Desktop\\Univalle\\Cuarto_Semestre\\Programacion_Web_III\\Unidad_3\\ApiTareas_Integrador\\ApiTareas\\Migrations\\TareasDbContextModelSnapshot.cs",
+              "RelativeToolTip": "Migrations\\TareasDbContextModelSnapshot.cs",
+              "ViewState": "AgIAAIUAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-20T15:24:03.073Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "20261118224801_InicialTareas.cs",
+              "DocumentMoniker": "C:\\Users\\draka\\OneDrive\\Desktop\\Univalle\\Cuarto_Semestre\\Programacion_Web_III\\Unidad_3\\ApiTareas_Integrador\\ApiTareas\\Migrations\\20261118224801_InicialTareas.cs",
+              "RelativeDocumentMoniker": "Migrations\\20261118224801_InicialTareas.cs",
+              "ToolTip": "C:\\Users\\draka\\OneDrive\\Desktop\\Univalle\\Cuarto_Semestre\\Programacion_Web_III\\Unidad_3\\ApiTareas_Integrador\\ApiTareas\\Migrations\\20261118224801_InicialTareas.cs",
+              "RelativeToolTip": "Migrations\\20261118224801_InicialTareas.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-20T15:23:53.248Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

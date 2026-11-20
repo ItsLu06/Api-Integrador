@@ -1,0 +1,676 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "API de Tareas",
+    "description": "Gestión de tareas organizadas por categorías (ASP.NET Core, EF Core y SQL Server).",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/categorias": {
+      "get": {
+        "tags": [
+          "Categorias"
+        ],
+        "summary": "Lista las categorías con su cantidad de tareas.",
+        "responses": {
+          "200": {
+            "description": "Lista de categorías.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoriaRespuesta"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Categorias"
+        ],
+        "summary": "Crea una categoría.",
+        "requestBody": {
+          "description": "Datos de la nueva categoría.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoriaSolicitud"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoriaSolicitud"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoriaSolicitud"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Categoría creada. El encabezado Location apunta a GET /api/categorias/{id}.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoriaRespuesta"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Datos inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Ya existe una categoría con ese nombre.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MensajeRespuesta"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/categorias/{id}": {
+      "get": {
+        "tags": [
+          "Categorias"
+        ],
+        "summary": "Obtiene una categoría por su Id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id de la categoría.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "La categoría solicitada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoriaRespuesta"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No existe una categoría con ese Id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MensajeRespuesta"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Categorias"
+        ],
+        "summary": "Elimina una categoría que no tenga tareas.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id de la categoría.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Categoría eliminada (sin contenido)."
+          },
+          "404": {
+            "description": "No existe una categoría con ese Id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MensajeRespuesta"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "La categoría tiene tareas y no puede eliminarse.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MensajeRespuesta"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/categorias/{id}/tareas": {
+      "get": {
+        "tags": [
+          "Categorias"
+        ],
+        "summary": "Lista las tareas que pertenecen a una categoría.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id de la categoría.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tareas de la categoría (puede estar vacía).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TareaRespuesta"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No existe una categoría con ese Id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MensajeRespuesta"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tareas": {
+      "get": {
+        "tags": [
+          "Tareas"
+        ],
+        "parameters": [
+          {
+            "name": "estado",
+            "in": "query",
+            "description": "Filtra por estado: Pendiente, EnProgreso o Completada.",
+            "schema": {
+              "$ref": "#/components/schemas/EstadoTarea"
+            }
+          },
+          {
+            "name": "prioridad",
+            "in": "query",
+            "description": "Filtra por prioridad: Baja, Media o Alta.",
+            "schema": {
+              "$ref": "#/components/schemas/PrioridadTarea"
+            }
+          },
+          {
+            "name": "categoriaId",
+            "in": "query",
+            "description": "Filtra por el Id de la categoría.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de tareas (puede estar vacía).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TareaRespuesta"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Tareas"
+        ],
+        "summary": "Crea una tarea.",
+        "requestBody": {
+          "description": "Datos de la nueva tarea.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TareaSolicitud"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TareaSolicitud"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TareaSolicitud"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Tarea creada. El encabezado Location apunta a GET /api/tareas/{id}.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TareaRespuesta"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Datos inválidos, categoría inexistente o fecha límite anterior a hoy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tareas/{id}": {
+      "get": {
+        "tags": [
+          "Tareas"
+        ],
+        "summary": "Obtiene una tarea por su Id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id de la tarea.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "La tarea solicitada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TareaRespuesta"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No existe una tarea con ese Id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MensajeRespuesta"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tareas"
+        ],
+        "summary": "Reemplaza los datos de una tarea existente.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id de la tarea a actualizar.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Nuevos datos de la tarea.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TareaSolicitud"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TareaSolicitud"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TareaSolicitud"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tarea actualizada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TareaRespuesta"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Datos inválidos, categoría inexistente o fecha límite anterior a hoy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No existe una tarea con ese Id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MensajeRespuesta"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tareas"
+        ],
+        "summary": "Elimina una tarea.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id de la tarea a eliminar.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Tarea eliminada (sin contenido)."
+          },
+          "404": {
+            "description": "No existe una tarea con ese Id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MensajeRespuesta"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CategoriaRespuesta": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "cantidadTareas": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Categoría tal como la devuelve la API."
+      },
+      "CategoriaSolicitud": {
+        "required": [
+          "nombre"
+        ],
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "maxLength": 60,
+            "minLength": 2,
+            "type": "string",
+            "description": "Nombre único de la categoría (2 a 60 caracteres)."
+          },
+          "descripcion": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string",
+            "description": "Descripción opcional (hasta 200 caracteres).",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Datos que envía el cliente para crear una categoría."
+      },
+      "EstadoTarea": {
+        "enum": [
+          "Pendiente",
+          "EnProgreso",
+          "Completada"
+        ],
+        "type": "string",
+        "description": "Estado en el que se encuentra una tarea."
+      },
+      "MensajeRespuesta": {
+        "type": "object",
+        "properties": {
+          "mensaje": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Cuerpo de las respuestas de error 404 y 409: { \"mensaje\": \"...\" }."
+      },
+      "PrioridadTarea": {
+        "enum": [
+          "Baja",
+          "Media",
+          "Alta"
+        ],
+        "type": "string",
+        "description": "Nivel de prioridad de una tarea."
+      },
+      "TareaRespuesta": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "titulo": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "prioridad": {
+            "$ref": "#/components/schemas/PrioridadTarea"
+          },
+          "estado": {
+            "$ref": "#/components/schemas/EstadoTarea"
+          },
+          "fechaLimite": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "fechaCreacion": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fechaCompletada": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "categoriaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "categoriaNombre": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Tarea tal como la devuelve la API."
+      },
+      "TareaSolicitud": {
+        "required": [
+          "titulo"
+        ],
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "maxLength": 120,
+            "minLength": 3,
+            "type": "string",
+            "description": "Título de la tarea (3 a 120 caracteres)."
+          },
+          "descripcion": {
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string",
+            "description": "Detalle opcional (hasta 500 caracteres).",
+            "nullable": true
+          },
+          "prioridad": {
+            "$ref": "#/components/schemas/PrioridadTarea"
+          },
+          "estado": {
+            "$ref": "#/components/schemas/EstadoTarea"
+          },
+          "fechaLimite": {
+            "type": "string",
+            "description": "Fecha límite opcional (formato AAAA-MM-DD). No puede ser anterior a hoy, salvo en tareas completadas.",
+            "format": "date",
+            "nullable": true
+          },
+          "categoriaId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Id de la categoría a la que pertenece. Debe existir.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Datos que envía el cliente para crear (POST) o reemplazar (PUT) una tarea."
+      },
+      "ValidationProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          },
+          "errors": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Categorias"
+    },
+    {
+      "name": "Tareas"
+    }
+  ]
+}

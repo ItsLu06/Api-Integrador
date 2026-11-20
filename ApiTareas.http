@@ -1,0 +1,60 @@
+# Pruebas rápidas desde Visual Studio (también puedes usar Swagger o la colección de Insomnia).
+# Ejecuta la API con el perfil "http" o "https" y ajusta el puerto si cambia.
+@ApiTareas_HostAddress = http://localhost:5249
+
+### Categorías
+GET {{ApiTareas_HostAddress}}/api/categorias
+Accept: application/json
+
+###
+GET {{ApiTareas_HostAddress}}/api/categorias/1/tareas
+Accept: application/json
+
+### 404: categoría inexistente
+GET {{ApiTareas_HostAddress}}/api/categorias/999
+Accept: application/json
+
+### Tareas
+GET {{ApiTareas_HostAddress}}/api/tareas
+Accept: application/json
+
+###
+GET {{ApiTareas_HostAddress}}/api/tareas/1
+Accept: application/json
+
+### 404: tarea inexistente
+GET {{ApiTareas_HostAddress}}/api/tareas/999
+Accept: application/json
+
+### 201 + Location
+POST {{ApiTareas_HostAddress}}/api/tareas
+Content-Type: application/json
+
+{
+  "titulo": "Leer el capítulo 5",
+  "descripcion": "Resumen para la clase",
+  "prioridad": "Media",
+  "estado": "Pendiente",
+  "fechaLimite": "2027-06-30",
+  "categoriaId": 1
+}
+
+### 400: categoría inexistente
+POST {{ApiTareas_HostAddress}}/api/tareas
+Content-Type: application/json
+
+{ "titulo": "Tarea con categoría falsa", "categoriaId": 999 }
+
+### 200: reemplazar la tarea 6
+PUT {{ApiTareas_HostAddress}}/api/tareas/6
+Content-Type: application/json
+
+{
+  "titulo": "Leer el capítulo 5",
+  "prioridad": "Media",
+  "estado": "Completada",
+  "categoriaId": 1
+}
+
+### 204: eliminar la tarea 6
+DELETE {{ApiTareas_HostAddress}}/api/tareas/6
